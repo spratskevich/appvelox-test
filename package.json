@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
@@ -46,6 +47,6 @@
     "react-is": "^16.13.1"
   },
   "resolutions": {
-      "styled-components": "^5"
-    }
+    "styled-components": "^5"
+  }
 }
