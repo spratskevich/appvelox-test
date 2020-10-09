@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 const CardLayout = styled.section `
-    position: absolute;
+    position: relative;
     box-sizing: border-box;
     padding: 20px;
     height: 174px;
     width: 475px;
-    left: 210px;
-    top: 104px;
+
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 1px 1px 4px #EBE7FF, -1px -1px 4px #EBE7FF;
