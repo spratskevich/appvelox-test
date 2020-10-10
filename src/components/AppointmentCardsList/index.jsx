@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import {v4 as uuidv4} from "uuid";
 import { Scrollbars } from 'react-custom-scrollbars';
 
 
 import AppointmentCard from '../AppointmentCard';
 
 const AppointmentsViewArea = (props) => {
-    const { cardsList } = props;
+    const { cardsList, top, left } = props;
 
     function renderThumbVertical({ style, ...props }) {
         const thumbStyle = {
@@ -38,13 +39,13 @@ const AppointmentsViewArea = (props) => {
     function showCards() {
         return cardsList.map(item => {
             return (
-                <div className="card"><AppointmentCard {...item}/></div>
+                <div className="card" key={uuidv4()}><AppointmentCard {...item}/></div>
             );
         })
     }
 
     return (
-    <StyledCardsList>
+    <StyledCardsList top={top} left={left}>
         {
             cardsList.length > 3 ? (
                 <Scrollbars style={{ width: '100%', height: '100%' }}
@@ -65,8 +66,8 @@ const StyledCardsList = styled.section `
     box-sizing: border-box;
     width: 505px;
     height: 646px;
-    left: 208px;
-    top: 102px;
+    left: ${props => props.left};
+    top: ${props => props.top};
     
     & .card {
         margin-bottom: 15px;

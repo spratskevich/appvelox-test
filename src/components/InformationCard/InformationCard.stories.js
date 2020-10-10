@@ -19,23 +19,31 @@ const Template = args => <InformationCard {...args}/>
 export const PatientInfoCard = Template.bind({});
 PatientInfoCard.args = {
     cardImg: PatientInfoIcon,
-    infoElement: <PatientInfoCardTextArea/>
+    infoElement: <PatientInfoCardTextArea/>,
+    top: 0,
+    left: 0
 }
 
 export const AddInfoCard = Template.bind({});
 AddInfoCard.args = {
     cardImg: AddInfoIcon,
-    infoElement: <CardsTextArea title="Добавить  информацию" text="Добавляйте в свою электронную медицинскую карту новые данные"/>
+    infoElement: <CardsTextArea title="Добавить  информацию" text="Добавляйте в свою электронную медицинскую карту новые данные"/>,
+    top: 0,
+    left: 0
 }
 
 export const TestResultsCard = Template.bind({});
 TestResultsCard.args = {
     cardImg: TestResultsIcon,
-    infoElement: <CardsTextArea title="Результаты анализов" text="Вы можете узнать здесь результаты своих анализов"/>
+    infoElement: <CardsTextArea title="Результаты анализов" text="Вы можете узнать здесь результаты своих анализов"/>,
+    top: 0,
+    left: 0
 }
 
 export const AppointmentsHystoryCard = Template.bind({});
 AppointmentsHystoryCard.args = {
     cardImg: AppointmentsHystoryIcon,
-    infoElement: <CardsTextArea title="История приемов" text="Вся информация о полученных услугах за все время хранится здесь"/>
+    infoElement: <CardsTextArea title="История приемов" text="Вся информация о полученных услугах за все время хранится здесь"/>,
+    top: 0,
+    left: 0
 }

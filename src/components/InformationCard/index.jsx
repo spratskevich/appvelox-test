@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const InformationCard = (props) => {
-    const { cardImg, infoElement } = props;
+    const { cardImg, infoElement, top, left } = props;
     return (
-        <StyledInformationCard>
+        <StyledInformationCard top={top} left={left}>
             <div className="icon-area">
                 <img className="icon" src={cardImg} alt="Card icon"/>
             </div>
@@ -14,13 +14,14 @@ const InformationCard = (props) => {
 };
 
 const StyledInformationCard = styled.section `
-
+    position: absolute;
+    top: ${props => props.top};
+    left: ${props => props.left};
     box-sizing: border-box;
     width: 540px;
     height: 183px;
     padding: 0;
     background: #FFFFFF;
-    //border: 2px solid #50CAFF;
     box-shadow: 0px 0px 5px #EBE7FF;
     border-radius: 5px;
     

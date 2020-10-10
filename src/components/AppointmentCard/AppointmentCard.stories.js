@@ -18,5 +18,25 @@ Default.args = {
         name: 'Малушко Т. Н.',
         specialization: 'Хирургия',
         avatarImg: '/image7.png'
-    }
+    },
+    top: "0px",
+    left: "0px",
+};
+
+export const Long = Template.bind({});
+Long.args = {
+    dateTime: 'Понедельник 15.06.20 | 15:30',
+    institutionName: 'СПБ ГБУЗ "Городская поликлиника №25"',
+    address: 'пр. Солидарности, д. 1, к. 1, лит. А',
+    medicInfo: {
+        name: 'Малушко Т. Н.',
+        specialization: 'ХирургияХирургияХирургия',
+        avatarImg: '/image7.png'
+    },
+    top: "0px",
+    left: "0px",
+};
+
+export const WithoutProps = Template.bind({});
+WithoutProps.args = {
 };

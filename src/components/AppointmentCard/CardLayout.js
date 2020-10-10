@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 const CardLayout = styled.section `
-    position: relative;
+    position: ${props => props.positioned ? "absolute" : "relative"};
+    top: ${props => props.positioned ? props.top: "0"};
+    left: ${props => props.positioned ? props.left: "0"};
     box-sizing: border-box;
     padding: 20px;
     height: 174px;
@@ -35,9 +37,9 @@ const CardLayout = styled.section `
 
     .medicInfo {
         position: absolute;
-        display: inline-block;
         bottom: 20px;
         left: 20px;
+        width: 330px;
 
         .avatarImg, .name, .specialization {
             box-sizing: border-box;
@@ -61,8 +63,11 @@ const CardLayout = styled.section `
         }
 
         .specialization {
-            float:left;
-            margin-left: 10px;
+            position: absolute;
+            //float:left;
+            //margin-left: 10px;
+            left: 70px;
+            bottom: 9px;
             font-weight: normal;
             font-size: 14px;
             line-height: 17px;

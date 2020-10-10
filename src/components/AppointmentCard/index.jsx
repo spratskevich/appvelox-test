@@ -3,11 +3,17 @@ import React from 'react';
 import CardLayout from './CardLayout.js';
 import Button from '../Button';
 
-const AppointmentCard = ({ 
-    dateTime, institutionName, address, medicInfo: { name, specialization, avatarImg } 
-}) => {
+const AppointmentCard = (props) => {
+    let { dateTime,
+          institutionName,
+          address,
+          medicInfo: { name, specialization, avatarImg },
+          top,
+          left,
+          positioned 
+        } = props;
     return (
-        <CardLayout>
+        <CardLayout top={top} left={left} positioned={positioned}>
             <p className="dateTime">{dateTime}</p>
             <p className="institutionInfo">{`${institutionName},
             ${address}`}</p>

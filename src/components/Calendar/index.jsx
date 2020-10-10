@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {v4 as uuidv4} from "uuid";
 import moment from 'moment';
 import 'moment/locale/ru';
 
-import styled from 'styled-components';
+import StyledCalendar, { CalendarCell, CalendarHeader, DaysNames, CalendarBody } from './CalendarStyles.js';
 
 import backArrow from '../../assets/images/backArrow.svg';
 import nextArrow from '../../assets/images/nextArrow.svg';
@@ -49,6 +50,20 @@ const Calendar = ({ appointmentsDates }) => {
         });
     };
 
+    const calculateAppoinments = (day) => {
+        const currentDate = currentCalendarState.date.clone().date(day);
+        let cntAppointments = appointmentsDates.reduce((cnt, item) => {
+            let sameYear = moment(item.date, "MM-DD-YYYY", "ru").isSame(currentDate, "year");
+            let sameMonth = moment(item.date, "MM-DD-YYYY", "ru").isSame(currentDate, "month");
+            let sameday = moment(item.date, "MM-DD-YYYY", "ru").isSame(currentDate, "day");
+            if(sameYear && sameMonth && sameday) {
+                return ++cnt;
+            }
+            return cnt;
+        }, 0);
+        return cntAppointments ? <div>{cntAppointments}</div> : null;
+    };
+
     return (
         <StyledCalendar>
             <CalendarHeader>
@@ -73,9 +88,11 @@ const Calendar = ({ appointmentsDates }) => {
                     let firstDay = (currentCalendarState.dayOfWeek + 6) % 7;
                     let currentDate = moment(currentCalendarState.date).date();
                     for(let i = 1; i <= currentCalendarState.cntDays; i++) {
+                        const newClickedDate = currentCalendarState.date.clone().date(i);
                         arrayDateCells.push(
-                        <CalendarCell column={`${firstDay % 7 + 1}`} opacity={i>=currentDate}>
-                            {i}
+                        <CalendarCell key={uuidv4()} column={`${firstDay % 7 + 1}`} opacity={i>=currentDate}>
+                            <p>{i}</p>
+                            {calculateAppoinments(i)}
                         </CalendarCell>);
                         firstDay++;
                     }
@@ -85,103 +102,5 @@ const Calendar = ({ appointmentsDates }) => {
         </StyledCalendar>
       );
 };
-
-const CalendarCell = styled.div `
-    box-sizing: border-box;
-    padding: 10px;
-    width: 79px;
-    height: 63px;
-    background-color: RGB(255, 255, 255, ${props => props.opacity ? 1 : 0});
-    grid-column-start: ${props => props.column};
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 20px
-`;
-
-const CalendarHeader = styled.section `
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 573px;
-    height: 57px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row nowrap;
-    background-color: #7761FF;
-    color: #fff;
-
-    p {
-        font-family: Rubik, sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 17px;
-    }
-
-text-align: center;
-    }
-
-    img {
-        display:block;
-        box-sizing: border-box;
-        padding: 0;
-        width: 14px;
-        height: 14px;
-    }
-
-    .backArrow {
-        margin-right: 35px;
-    }
-
-    .nextArrow {
-        margin-left: 35px;
-    }
-`;
-
-const StyledCalendar = styled.article `
-    position: absolute;
-    width: 573px;
-    height: 481px;
-    left: 753px;
-    top: 103px;
-    overflow: hidden;
-    background-color: #EBE7FF;
-    border-radius: 5px;
-`;
-
-const DaysNames = styled.section `
-    position: absolute;
-    top: 57px;
-    left: 0;
-    width: 573px;
-    height: 37px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-flow: row nowrap;
-    p {
-        font-family: Rubik, sans-serif;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 17px;
-        color: #000;
-    }
-`;
-
-const CalendarBody = styled.section `
-    position: absolute;
-    top: 94px;
-    left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: grid;
-    grid-gap: 0;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-`;
 
 export default Calendar;

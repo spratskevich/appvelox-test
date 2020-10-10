@@ -13,6 +13,8 @@ const Template = args => <AppointmentsViewArea {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
+    top: "0px",
+    left: "0px",
     cardsList: [
         { ...CardsStories.Default.args },
         { ...CardsStories.Default.args },
@@ -25,6 +27,8 @@ Default.args = {
 
 export const WithoutScroll = Template.bind({});
 WithoutScroll.args = {
+    top: "0px",
+    left: "0px",
     cardsList: [
         { ...CardsStories.Default.args },
         { ...CardsStories.Default.args },
